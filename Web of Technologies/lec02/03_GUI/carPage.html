@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .theCar {
+        border-style: solid;
+        border-width: 1px;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Car Page</h1>
+    <p>
+      <b>Here you can:</b>
+    </p>
+    <ul>
+      <li>
+        add a new car, by typing producer and model name. Use a form with some
+        buttons to do that.
+      </li>
+      <li>
+        refresh the list of existing cars (eventually after you have added a
+        car). Make a button for that.
+      </li>
+      <li>show some statistics (e.g., count) in a DIV somewhere in the page</li>
+    </ul>
+
+    <hr />
+    <div>
+      The input form <br />
+      <form>
+        Enter producer name:
+        <input type="text" id="producerName" placeholder="Producer name" />
+        <br />
+        Enter model name:
+        <input type="text" id="modelName" placeholder="Model name" />
+        <input type="button" value="Submit to Database" onclick="submitCar()" />
+      </form>
+    </div>
+    <hr />
+    <div id="listOfCars"></div>
+    <hr />
+    <div id="carStatistics"></div>
+    <hr />
+    <script>
+      let carArray = [
+        { producer: "Trækvogn", model: "200" },
+        { producer: "BMW", model: "500" },
+        { producer: "Citroen", model: "B250" },
+        { producer: "Porsche", model: "911" },
+      ];
+      console.log(carArray);
+      updateCarList();
+      /* change the code below to print a div per car, with 2 spans, 
+        one for the producer and one for the model */
+
+      function submitCar() {
+        let producerName = document.getElementById("producerName").value;
+        let modelName = document.getElementById("modelName").value;
+        console.log("Cars being added " + producerName + " " + modelName);
+
+        let carObject = {
+          producer: producerName,
+          model: modelName,
+        };
+
+        carArray.push(carObject);
+        updateCarList();
+      }
+
+      function updateCarList() {
+        document.getElementById("listOfCars").innerHTML = "";
+        for (car of carArray) {
+          document.getElementById("listOfCars").innerHTML +=
+            "<div class='theCar'><span>" +
+            car.producer +
+            "</span>" +
+            "<span>" +
+            car.model;
+        }
+      }
+    </script>
+  </body>
+</html>

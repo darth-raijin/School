@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>See console (and try reloading repeatedly)</p>
+    <script>
+      function networkStatus() {
+        if (Math.random() < 0.3) {
+          return Promise.reject("Dang, DSB Wifi is down");
+        } else {
+          return Promise.resolve("Yay, facebook here we come");
+        }
+      }
+      networkStatus().then((value) => console.log(value));
+      // TO DO: handle promise
+    </script>
+  </body>
+</html>

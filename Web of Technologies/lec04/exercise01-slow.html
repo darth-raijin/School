@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The sluggish page</title>
+  </head>
+  <body>
+    <input type="text" /> length: <span id="length">0</span>
+    <script>
+      let text = document.querySelector("input");
+      let output = document.querySelector("#length");
+      text.addEventListener("input", () => {
+        output.innerText = text.value.length;
+        // SLOW ME
+        let start = Date.now();
+        setTimeout(() => {
+          Date.now() - start;
+        }, 200); //timeout after 20 msec
+        while (Date.now() < start + 100) {} //loop for >= 100 ms
+        console.log("Wasted time until", Date.now() - start);
+      });
+    </script>
+  </body>
+</html>
