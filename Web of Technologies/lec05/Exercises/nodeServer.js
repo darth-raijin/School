@@ -22,8 +22,9 @@ server.post("/", (req, res) => {
   res.end(JSON.stringify(req.body, null, 2));
 });
 
-server.put("/", (req, res) => {
-  
-})
+server.all('/', (req, res, next) => {
+  res.status(405).send('Method not allowed');
+});
+
 
 server.listen(8080);
