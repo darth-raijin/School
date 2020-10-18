@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: momac18
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-pod
+  template:
+    metadata:
+      labels:
+        app: web-pod
+    spec:
+      containers:
+      - name: l5e2
+        image: h0tsauce/l5e2
+        ports:
+        - containerPort: 80
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-sql
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort:
+    nodePort: 31928
+  selector:
+    app: web-pod

@@ -39,4 +39,3 @@ process.stdin.on('data', buf => {
         break;
     }
 });
-
