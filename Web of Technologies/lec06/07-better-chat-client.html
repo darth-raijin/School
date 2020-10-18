@@ -14,7 +14,7 @@
                 ws.onmessage = event => { 
                     let json = JSON.parse(event.data);
                     //TODO: diplay both userid and msg
-                    let node = document.createTextNode(json.time + " " + json.msg);
+                    let node = document.createTextNode(json.userid +  ": " + json.msg);
                     let div  = document.createElement("div");
                     div.appendChild(node);
                     document.body.appendChild(div);
@@ -28,7 +28,7 @@
         </script>
     </head>
     <body>
-        User-id: <input type="text" id="userid" value="Anonymous"><br/>
+        User-id: <input type="text" id="userid" value="Hehe"><br/>
         Message: <input type="text" id="input">
         <button id="button">Send</button>
         <hr>
