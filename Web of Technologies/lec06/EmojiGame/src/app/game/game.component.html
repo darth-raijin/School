@@ -1,19 +1,36 @@
 <div>
-    <div>
-        <span *ngFor="let t of tiles">
-            {{ t.index == playerX ? "🤓" : t.emoji }}
-        </span>
-    </div>
+  <div>
+    <ng-container *ngIf="wearingSunglasses; else noGlasses">
+      <span *ngFor="let t of tiles">
+        {{ t.index == playerX ? "😎" : t.emoji }}
+      </span>
+    </ng-container>
+    <ng-template #noGlasses>
+      <span *ngFor="let t of tiles">
+        {{ t.index == playerX ? "🤓" : t.emoji }}
+      </span>
+    </ng-template>
+  </div>
 
-    <p>
-        <button (click)="left()" [disabled]="gameOver">Left</button>
-        <button (click)="jump()" [disabled]="gameOver">Jump</button>
-        <button (click)="right()" [disabled]="gameOver">Right</button>
-    </p>
+  <p>
+    <button (click)="left()" [disabled]="gameOver" [disabled]="lostGame">
+      Left
+    </button>
+    <button (click)="jump()" [disabled]="gameOver" [disabled]="lostGame">
+      Jump
+    </button>
+    <button (click)="right()" [disabled]="gameOver" [disabled]="lostGame">
+      Right
+    </button>
+    <button (click)="down()" [disabled]="gameOver" [disabled]="lostGame">
+      Down
+    </button>
+  </p>
 
-    <p *ngIf="gameOver">🎉🏆 Victory! 🏆🎉</p>
+  <p *ngIf="gameOver">🎉🏆 Victory! 🏆🎉</p>
+  <p *ngIf="lostGame">😿😿 You last man 😿😿</p>
 
-    <!--
+  <!--
     <p>
         Internal game state:
         <br/>

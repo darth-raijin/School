@@ -14,7 +14,7 @@
                 ws.onmessage = event => { 
                     let json = JSON.parse(event.data);
                     //TODO: diplay both userid and msg
-                    let node = document.createTextNode(json.userid +  ": " + json.msg);
+                    let node = document.createTextNode(json.msg);
                     let div  = document.createElement("div");
                     div.appendChild(node);
                     document.body.appendChild(div);
