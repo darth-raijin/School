@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function validDate(input) {
+                //FIXME: should return true on valid date strings on the format dd/mm/yyyy
+                return true;
+            }
+            window.addEventListener("load", () => {
+                let dateInput = document.getElementById("date");
+                dateInput.addEventListener("keyup", () => {
+                    if (validDate(dateInput.value)) {
+                        dateInput.style.background = "lightgreen";
+                    } else {
+                        dateInput.style.background = "red";
+                    }
+                });
+            })
+        </script>
+    </head>
+    <body>
+        <p>Please enter a date on the format dd/mm/yyyy:</p>
+        <form>
+            <label for="date">Date:</label>
+            <input type="text" id="date">
+        </form>
+    </body>
+</html>
