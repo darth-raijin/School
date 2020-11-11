@@ -9,28 +9,25 @@ window.addEventListener("load", () => {
     e.preventDefault();
     winElem.style.display = "none"; //new click of button:
     nowinElem.style.display = "none"; // hide previous messages
-
-    let resp = await fetch("winner", {
+    console.log("poop");
+    let response = await fetch("winner", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: nameInput.value,
-        couponcode: couponCodeInput.value
+        couponcode: couponCodeInput.value,
       }),
     })
-    let jsonObj = res.body //JSON already parsed: { "name": "my name" }
-    let enteredCoupon = JSON.stringify(jsonObj.winner)
-
-    if (enteredCoupon == true) {
-        winElem.style.display = "block";
-    } else {
-        noWinElem.style.display = "block";
-    }
-   
-    winElem.style.display = "block";
-
-    })
-    if (resp.status !== 200) console.log("Winner report failed");
-    winElem.style.display = "block";
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status == true) {
+          winElem.style.display = "block";
+        } else {
+          nowinElem.style.display = "block";
+        }
+      })
+      .catch(console.error);
   });
 
+  // winElem.style.display = "block";
+});
