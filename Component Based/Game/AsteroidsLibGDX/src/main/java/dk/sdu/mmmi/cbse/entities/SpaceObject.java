@@ -13,12 +13,19 @@ public class SpaceObject {
 	protected float radians;
 	protected float speed;
 	protected float rotationSpeed;
+
+	protected boolean space;
 	
 	protected int width;
 	protected int height;
 	
 	protected float[] shapex;
 	protected float[] shapey;
+	
+	public void setSpace(boolean b) {
+        space = b;
+    }
+
 	
 	protected void wrap() {
 		if(x < 0) x = Game.WIDTH;
