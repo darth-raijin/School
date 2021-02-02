@@ -1,5 +1,7 @@
 package dk.sdu.mmmi.cbse.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
@@ -15,8 +17,9 @@ public class Player extends SpaceObject {
 	private float acceleration;
 	private float deceleration;
 	
-	public Player() {
-		
+	public Player(ArrayList<Rocket> rockets) {
+		this.rockets = rockets;
+
 		x = Game.WIDTH / 2;
 		y = Game.HEIGHT / 2;
 		
@@ -65,6 +68,12 @@ public class Player extends SpaceObject {
 			dx += MathUtils.cos(radians) * acceleration * dt;
 			dy += MathUtils.sin(radians) * acceleration * dt;
 		}
+
+		// accelerating
+		if(space) {
+			System.out.println(rockets.size() + " : Num of player rockets");
+			shoot();
+		}
 		
 		// deceleration
 		float vec = (float) Math.sqrt(dx * dx + dy * dy);
@@ -93,7 +102,7 @@ public class Player extends SpaceObject {
 		
 		sr.setColor(1, 1, 1, 1);
 		
-		sr.begin(ShapeType.Line);
+		sr.begin(ShapeType.Filled);
 		
 		for(int i = 0, j = shapex.length - 1;
 			i < shapex.length;

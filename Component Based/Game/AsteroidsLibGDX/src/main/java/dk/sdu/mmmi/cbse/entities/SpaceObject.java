@@ -1,6 +1,9 @@
 package dk.sdu.mmmi.cbse.entities;
 
+import java.util.ArrayList;
+
 import dk.sdu.mmmi.cbse.main.Game;
+
 
 public class SpaceObject {
 	
@@ -9,7 +12,10 @@ public class SpaceObject {
 	
 	protected float dx;
 	protected float dy;
-	
+
+	protected final int maxRockets = 4;
+	protected ArrayList<Rocket> rockets;
+
 	protected float radians;
 	protected float speed;
 	protected float rotationSpeed;
@@ -24,7 +30,19 @@ public class SpaceObject {
 	
 	public void setSpace(boolean b) {
         space = b;
-    }
+	}
+	
+	public boolean getSpace() {
+		return space; 
+	}
+
+	public void shoot() {
+		if (rockets.size() >= maxRockets) {
+			return;
+		} else {
+			rockets.add(new Rocket(x, y , radians));
+		}
+	}
 
 	
 	protected void wrap() {

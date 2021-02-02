@@ -2,6 +2,8 @@ package dk.sdu.mmmi.cbse.entities;
 
 import com.badlogic.gdx.math.MathUtils;
 import dk.sdu.mmmi.cbse.main.Game;
+
+import java.util.ArrayList;
 import java.util.Random;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -16,7 +18,8 @@ public class Enemy extends SpaceObject {
     private float acceleration;
     private float deceleration;
 
-    public Enemy() {
+    public Enemy(ArrayList<Rocket> rockets) {
+        this.rockets = rockets;
 
         x = Game.WIDTH / 2;
         y = Game.HEIGHT / 2;
@@ -59,26 +62,28 @@ public class Enemy extends SpaceObject {
         up = b;
     }
 
-    
-
     public void randomMovement() {
-        // Random num 1-3
-        int rand = new Random().nextInt(3);
+        // Random num 0-3
+        int rand = new Random().nextInt(4);
         // Set movement based on int
         switch (rand) {
-            case 1:
+            case 0:
                 left = true;
                 break;
-            case 2:
+            case 1:
                 right = true;
                 break;
-            case 3:
+            case 2:
                 up = true;
+                break;
+            case 3:
+                    shoot();                  
                 break;
             default:
                 left = false;
                 up = true;
                 right = false;
+                space = false;
                 break;
         }
 

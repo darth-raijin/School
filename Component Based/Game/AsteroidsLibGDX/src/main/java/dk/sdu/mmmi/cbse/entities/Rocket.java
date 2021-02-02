@@ -53,15 +53,15 @@ public class Rocket extends SpaceObject {
         dy += MathUtils.sin(radians) * acceleration * dt;
 
         // deceleration
-        float vec = (float) Math.sqrt(dx * dx + dy * dy);
-        if (vec > 0) {
-            dx -= (dx / vec) * deceleration * dt;
-            dy -= (dy / vec) * deceleration * dt;
-        }
-        if (vec > maxSpeed) {
-            dx = (dx / vec) * maxSpeed;
-            dy = (dy / vec) * maxSpeed;
-        }
+		float vec = (float) Math.sqrt(dx * dx + dy * dy);
+		if(vec > 0) {
+			dx -= (dx / vec) * deceleration * dt;
+			dy -= (dy / vec) * deceleration * dt;
+		}
+		if(vec > maxSpeed) {
+			dx = (dx / vec) * maxSpeed;
+			dy = (dy / vec) * maxSpeed;
+		}
 
         // set position
         x += dx * dt;
